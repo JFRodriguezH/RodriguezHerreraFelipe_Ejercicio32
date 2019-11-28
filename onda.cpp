@@ -2,9 +2,9 @@
 #include <fstream>
 #include <math.h>
 
-float const L = 100.0;
+float const L = 1.0;
 float const rho = 0.01;
-float const ten = 100;
+float const ten = 40;
 float const c = sqrt(ten/rho);
 
 void inicializar(float* prevA, int Nx, float dx);
@@ -17,7 +17,7 @@ int main(int argv, char **argc){
     float tf = atof(argc[2]); //Tiempo final
     int Nt = tf/dt;
     float dx = c*dt;
-    int Nx = L/dx;
+    int Nx = 1+(L/dx);
 	
 	float* prevA = new float[Nx];
 	float* prevB = new float[Nx];
@@ -62,7 +62,7 @@ int main(int argv, char **argc){
 
 void inicializar(float* prevA, int Nx, float dx){
 	for(int i=0;i<Nx;i++){
-		prevA[i] = 0.6*sin((M_PI/L)*i*dx);
+		prevA[i] = pow(10,-4)*sin((2.0*M_PI/L)*i*dx);
 	}
 }
 
